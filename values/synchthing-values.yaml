@@ -1,7 +1,6 @@
 ingress:
   main:
     enabled: true
-
     className: traefik
 
     hosts:
@@ -10,6 +9,10 @@ ingress:
           - path: /
             pathType: Prefix
 
+    service:
+      name: syncthing
+      port: 8384
+      
 persistence:
   config:
     enabled: true
