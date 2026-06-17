@@ -1,0 +1,9 @@
+ingress:
+  main:
+    enabled: true
+
+persistence:
+  config:
+    enabled: true
+    storageClass: truenas-nfs
+    size: 10Gi

@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: syncthing
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: http://brandan-schmitz.github.io/helm-charts
+    chart: syncthing
+    targetRevision: 2.0.0
+
+    helm:
+      valueFiles:
+        - $values/values/syncthing-values.yaml
+
+  sources:
+    - repoURL: https://github.com/YOURORG/gitops
+      targetRevision: main
+      ref: values
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: syncthing
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
