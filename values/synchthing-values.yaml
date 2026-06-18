@@ -11,17 +11,10 @@ ingress:
 
     service:
       name: syncthing
-      port: 8384   # ✅ ONLY the web UI
+      port: 8384   # UI ONLY
 
 service:
-  main:
-    type: NodePort
-
-    ports:
-      listen:
-        port: 22000
-        targetPort: 22000
-        nodePort: 32200   # must be in 30000–32767 range
+  type: ClusterIP   # keep default; we expose sync separately via NodePort
 
 persistence:
   config:
